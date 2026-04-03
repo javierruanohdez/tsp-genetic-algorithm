@@ -1,9 +1,8 @@
----
-
 # 🧬 Resolución del TSP mediante Algoritmos Genéticos
+
 > **Asignatura:** Inteligencia Artificial para Ciencia de Datos
 > **Grado:** Ciencia e Ingeniería de Datos  
-> **Autor:** Javier Ruano Hernández (javierruanohdez)
+> **Autor:** Javier Ruano Hernández
 
 ---
 
@@ -31,12 +30,11 @@ El entorno se ha diseñado de forma modular para permitir el ajuste de los sigui
 En este apartado se analiza la convergencia del algoritmo variando el tamaño de la población y la tasa de mutación.
 
 ### 📈 Análisis de Convergencia
-*(Aquí insertarás la imagen que generamos antes)*
-`![Gráfica de Convergencia](./ruta/a/tu/grafica.png)`
+*(Imagen de convergencia)*
 
 **Observaciones clave:**
-1.  **Relación Población/Generaciones:** [Tu breve análisis aquí].
-2.  **Impacto de la Mutación:** [Explicar por qué 0.6 o 0.8 son erráticos].
+1.  **Relación Población/Generaciones:** 
+2.  **Impacto de la Mutación:**
 
 ---
 
