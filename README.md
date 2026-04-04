@@ -1,16 +1,18 @@
 # 🧬 Resolución del TSP mediante Algoritmos Genéticos
 
-> **Asignatura:** Inteligencia Artificial para Ciencia de Datos
+> **Asignatura:** Inteligencia Artificial para la Ciencia de Datos
+
 > **Grado:** Ciencia e Ingeniería de Datos  
-> **Autor:** Javier Ruano Hernández
+
+> **Autor:** Javier Ruano Hernández [javierruanohdez](https://github.com/javierruanohdez)
 
 ---
 
 ## 📋 Introducción
-Este proyecto aborda el **Problema del Viajante de Comercio (TSP)** aplicando técnicas de **Computación Evolutiva**. El objetivo es encontrar una ruta eficiente que conecte 48 ciudades, minimizando la distancia total recorrida mediante la simulación de procesos biológicos de selección, cruce y mutación.
+Este proyecto aborda el **Problema del Viajante de Comercio (TSP)** aplicando técnicas de **Computación Evolutiva**. El objetivo es encontrar una ruta eficiente que conecte 48 ciudades, minimizando la distancia total recorrida mediante la simulación de algoritmos genéticos, recreando operaciones biológicas como: selección, cruce y mutación.
 
 ### 🎯 Objetivo del Estudio
-Analizar el comportamiento paramétrico del algoritmo frente a un dataset de 48 coordenadas euclídeas, buscando alcanzar una **solución óptima (distancia ≤ 35.000,00)**.
+Analizar el comportamiento paramétrico del algoritmo frente a un dataset de 48 ciudades y sus coordenadas, buscando alcanzar una **solución óptima (distancia ≤ 35.000,00)**.
 
 ---
 
@@ -28,6 +30,7 @@ El entorno se ha diseñado de forma modular para permitir el ajuste de los sigui
 
 ## 📊 A. Estudio Paramétrico
 En este apartado se analiza la convergencia del algoritmo variando el tamaño de la población y la tasa de mutación.
+El algoritmo usado se basa en ...
 
 ### 📈 Análisis de Convergencia
 *(Imagen de convergencia)*
