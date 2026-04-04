@@ -2,7 +2,7 @@
 
 > **Asignatura:** Inteligencia Artificial para la Ciencia de Datos
 > **Grado:** Ciencia e Ingeniería de Datos  
-> **Autor:** [Javier Ruano Hernández] (https://github.com/javierruanohdez)
+> **Autor:** [Javier Ruano Hernández](https://github.com/javierruanohdez)
 
 ---
 
@@ -40,6 +40,14 @@ El algoritmo usado se basa en ...
 ---
 
 ## 🚀 B. Propuesta de Mejora
+...
+
+### 📈 Análisis de Convergencia
+*(Imagen de convergencia)*
+
+**Observaciones clave:**
+1.  **Relación Población/Generaciones:** 
+2.  **Impacto de la Mutación:**
 
 
 ---
