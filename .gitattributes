@@ -1,0 +1,2 @@
+# Force Python language for Jupyter notebooks
+*.ipynb linguist-language=Python
