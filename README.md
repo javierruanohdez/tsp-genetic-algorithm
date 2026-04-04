@@ -2,7 +2,7 @@
 
 > **Asignatura:** Inteligencia Artificial para la Ciencia de Datos
 > **Grado:** Ciencia e Ingeniería de Datos  
-> **Autor:** Javier Ruano Hernández (https://github.com/javierruanohdez)
+> **Autor:** [Javier Ruano Hernández] (https://github.com/javierruanohdez)
 
 ---
 
