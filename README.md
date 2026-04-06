@@ -3,9 +3,9 @@
 ![Jupyter Notebook](https://img.shields.io/badge/jupyter-%23FA0F00.svg?style=for-the-badge&logo=jupyter&logoColor=white)
 ![NumPy](https://img.shields.io/badge/numpy-%23013243.svg?style=for-the-badge&logo=numpy&logoColor=white)
 ![Pandas](https://img.shields.io/badge/pandas-%23150458.svg?style=for-the-badge&logo=pandas&logoColor=white)
-![Matplotlib](https://img.shields.io/badge/matplotlib-%35013213.svg?style=for-the-badge&logo=matplotlib&logoColor=black)
+![Matplotlib](https://img.shields.io/badge/matplotlib-6A5ACD?style=for-the-badge)
 
-> **Asignatura:** Inteligencia Artificial para la Ciencia de Datos
+> **Asignatura:** Inteligencia Artificial para la Ciencia de Datos        
 > **Autor:** [Javier Ruano Hernández](https://github.com/javierruanohdez)
 
 ---
@@ -55,7 +55,31 @@ El algoritmo original consta de una función cruce (crossover) y una función mu
 ---
 
 ## 🚀 Propuesta de Mejora
-...
+
+Tras analizar la inestabilidad del algoritmo original, proponemos una transición de un enfoque basado en la **ordenación** a uno basado en la **adyacencia**. En el TSP, la calidad de una ruta no depende de si una ciudad es la tercera o la cuarta en dicha ruta, sino que lo que verdaderamente importa es quiénes son sus vecinos (o bordes).
+
+### 1. Crossover de borde (Edge Recombination Crossover)
+El operador **ERX** se centra exclusivamente en preservar las uniones (aristas) presentes en los padres, siendo el estándar para problemas donde la adyacencia es crítica.
+
+* **Mecánica del Algoritmo:**
+    1.  **Tabla de Bordes (Edge Table):** Se construye una lista de adyacencia $N(v)$ para cada ciudad $v$, recopilando todos los vecinos que tiene en ambos padres.
+    2.  **Selección Inteligente:** Se elige una ciudad inicial. Para las siguientes, el algoritmo no elige al azar, sino que busca en $N(c)$ la ciudad $u$ con el **menor número de bordes restantes** ($|N(u)|$ mínimo).
+    3.  **Gestión de Restricciones:** Al priorizar nodos con menos opciones (nodos más restringidos), el ERX minimiza la necesidad de introducir bordes aleatorios ("dead-ends"), logrando que el hijo herede entre el **95% y 99%** de las aristas de sus padres.
+
+### 2. Mutación por inversión (Inversion Mutation)
+Sustituimos el *Swap* por la **Mutación por inversión**, un operador mucho más sutil y eficiente para problemas de rutas.
+
+* **Funcionamiento:** Se seleccionan dos puntos de corte aleatorios y se invierte el subsegmento comprendido entre ellos.
+* **Ventaja Competitiva:** Mientras que el *Swap* rompe hasta 4 uniones de adyacencia, la **Inversión solo rompe 2**. Esto permite explorar nuevas rutas sin destruir masivamente la estructura de la solución que el crossover ha tardado generaciones en construir.
+
+---
+
+### ⚖️ Justificación de la Mejora
+Consideramos que esta combinación superará significativamente al algoritmo original por tres razones fundamentales:
+
+1.  **Preservación de la Herencia:** El algoritmo original (OX1) es excelente para preservar el orden relativo, pero el TSP es un problema de **distancias entre nodos adyacentes**. ERX está diseñado matemáticamente para no perder esas conexiones valiosas.
+2.  **Reducción del Ruido Estocástico:** La inestabilidad observada en el análisis anterior se debía a que la mutación *Swap* era demasiado destructiva. La **Inversión** actúa como una "búsqueda local" más inteligente, permitiendo optimizar tramos de la ruta sin desordenar el resto.
+3.  **Evasión de Óptimos Locales:** Al utilizar la **Tabla de Bordes**, el algoritmo tiene una "hoja de ruta" mucho más clara de qué conexiones son prometedoras, lo que reduce drásticamente la dependencia del azar y evita que el sistema se estanque en las soluciones subóptimas vistas anteriormente.
 
 ### 📈 Análisis de Convergencia
 *(Imagen de convergencia)*
