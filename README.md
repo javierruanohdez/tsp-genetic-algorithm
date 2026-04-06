@@ -99,12 +99,22 @@ Consideramos que esta combinación superará significativamente al algoritmo ori
 ## 📦 Instrucciones de Ejecución
 ```bash
 # Clonar el repositorio
-git clone [URL_DEL_REPO]
+git clone [https://github.com/pablo-fernandez-lopez/IACD_2025_26_EP2_javier_ruano_hernandez.git](https://github.com/pablo-fernandez-lopez/IACD_2025_26_EP2_javier_ruano_hernandez.git)
+
+# Crear un entorno virtual (Recomendado)
+python -m venv venv
+
+# Activar el entorno
+## En Windows:
+venv\Scripts\activate o .\venv\Scripts\Activate.ps1
+
+## En Linux y macOS:
+source venv/bin/activate
 
 # Instalar dependencias
+pip install -r requirements.txt
 
 # Ejecutar el estudio
-
+jupyter notebook TSP.ipynb
 ```
-
 ---
