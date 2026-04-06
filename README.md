@@ -99,7 +99,8 @@ Consideramos que esta combinación superará significativamente al algoritmo ori
 ## 📦 Instrucciones de Ejecución
 ```bash
 # Clonar el repositorio
-git clone [https://github.com/pablo-fernandez-lopez/IACD_2025_26_EP2_javier_ruano_hernandez.git](https://github.com/pablo-fernandez-lopez/IACD_2025_26_EP2_javier_ruano_hernandez.git)
+git clone https://github.com/pablo-fernandez-lopez/IACD_2025_26_EP2_javier_ruano_hernandez.git  tsp_genetic_algorithm
+cd tsp_genetic_algorithm
 
 # Crear un entorno virtual (Recomendado)
 python -m venv venv
