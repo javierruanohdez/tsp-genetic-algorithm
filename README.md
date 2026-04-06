@@ -101,7 +101,28 @@ Consideramos que esta combinación superará significativamente al algoritmo ori
 ---
 
 ## 🧪 Conclusiones
+![Análisis de Convergencia Algoritmo Original vs. Algoritmo Propuesto](results/proposed_vs_original_algorithm_tsp_convergence.png)
 
+Al observar los dos paneles en paralelo, la conclusión es inmediata: el algoritmo propuesto (ERX + Inversion) es una gran mejora frente al original (OX1 + Swap).
+
+### 1. Desplazamiento del Área de Convergencia
+  * **Panel Izquierdo (Base):** El grueso de los resultados se aglutina en el extremo derecho (generaciones 800 a 2000). Es un algoritmo que sobrevive al límite de tiempo, pero no domina el problema.
+
+  * **Panel Derecho (Propuesta):** El área de éxito se ha desplazado drásticamente hacia la izquierda (generaciones 125 a 330). Lo que antes era un caso de éxito excepcional para el algoritmo original, es ahora el estándar mínimo de nuestra propuesta.
+
+### 2. Estabilidad de la Solución
+  * **Caos:** En el gráfico original, las líneas zigzaguean sin control. Esto indica que el éxito es **sensible al azar**. El mismo tamaño de población puede tardar 400 o 2000 generaciones dependiendo de la suerte.
+
+  * **Robustez:** En la propuesta, las líneas son mucho más verticales y predecibles. Esto demuestra que el algoritmo es **robusto**, es decir, el rendimiento es consistente independientemente de las fluctuaciones en la tasa de mutación, lo que indica una herencia genética de mayor calidad.
+
+### 3. Ratio de Eficiencia
+  * **Factor de Aceleración:** La propuesta alcanza el mismo objetivo de fitness hasta **10 veces más rápido** en los mejores casos.
+
+  * **Eficiencia de Recursos:** Mientras que el algoritmo base requiere poblaciones masivas (1000+) para intentar converger, el ERX con Inversión es capaz de resolver el problema de forma óptima con poblaciones un **90% más pequeñas** (100 individuos), ahorrando un tiempo de computación crítico.
+
+---
+
+> El uso de una **Tabla de Adyacencia (ERX)** para preservar las aristas y una **Mutación por Inversión** para optimizar la geometría ha transformado un proceso estocástico ineficiente en una herramienta de optimización logística.
 
 ---
 
