@@ -126,7 +126,7 @@ Al observar los dos paneles en paralelo, la conclusión es inmediata: el algorit
 
 ---
 
-## 📦 Instrucciones de Ejecución
+### 📦 Instrucciones de Ejecución
 ```bash
 # Clonar el repositorio
 git clone https://github.com/pablo-fernandez-lopez/IACD_2025_26_EP2_javier_ruano_hernandez.git  tsp_genetic_algorithm
@@ -148,4 +148,13 @@ pip install -r requirements.txt
 # Ejecutar el estudio
 jupyter notebook TSP.ipynb
 ```
+---
+
+### 🌐 Recursos Bibliográficos
+
+Para el desarrollo de este proyecto y la implementación de los operadores genéticos avanzados, tanto de crossover como de mutación, se han consultado las siguientes fuentes académicas y técnicas:
+  * **Apuntes de clase:** *Tema VI: Computación Inteligente y Algoritmos Genéticos.* Material docente de la asignatura **Inteligencia Artificial para la Ciencia de Datos** (Prof. Carmen Paz).
+
+  * **[Edge Recombination Crossover (ERX)](https://k78ma.github.io/quartz/4B/ECE-457A/Edge-Recombination-Crossover):** Recurso utilizado para la aproximación en pseudocódigo y lógica de adyacencia del algoritmo de mejora propuesto.
+
 ---
