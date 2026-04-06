@@ -50,7 +50,6 @@ El algoritmo original consta de una función cruce (crossover) y una función mu
    * **Interpretación:** En un espacio de búsqueda tan amplio (48 ciudades), una mutación baja (0.2) puede hacer que el algoritmo sea demasiado "conservador", quedando atrapado en rutas poco óptimas. En cambio, una mutación del 60% introduce suficiente ruido para escapar de esas pésimas soluciones, aunque el proceso sea errático. Es en esencia, una búsqueda aleatoria que compensa las carencias del operador OX1.
 
 3. **Sensibilidad al Tamaño de Población:**
-   * **Poblaciones de 750:** Presentan los mejores picos de velocidad. Esto indica que existe un punto de equilibrio, donde hay suficiente diversidad sin llegar al ruido excesivo de una población de 1000, donde la presión selectiva se diluye.
    * **El muro de las 2000 generaciones:** El hecho de que varias configuraciones (incluyendo poblaciones grandes) choquen contra este límite confirma que la recombinación por intercambio aleatorio (Swap) es insuficiente para optimizar rutas de 48 ciudades, a diferencia de cuando eran sólo 5 de ellas. Un buen símil sería que, intercambiar solo dos ciudades es como intentar resolver un cubo de Rubik moviendo las piezas al azar: funciona por pura probabilidad.
 ---
 
@@ -63,13 +62,16 @@ El operador **ERX** se centra exclusivamente en preservar las uniones (aristas) 
 
 * **Mecánica del Algoritmo:**
     1.  **Tabla de Bordes (Edge Table):** Se construye una lista de adyacencia $N(v)$ para cada ciudad $v$, recopilando todos los vecinos que tiene en ambos padres.
+
     2.  **Selección Inteligente:** Se elige una ciudad inicial. Para las siguientes, el algoritmo no elige al azar, sino que busca en $N(c)$ la ciudad $u$ con el **menor número de bordes restantes** ($|N(u)|$ mínimo).
+
     3.  **Gestión de Restricciones:** Al priorizar nodos con menos opciones (nodos más restringidos), el ERX minimiza la necesidad de introducir bordes aleatorios ("dead-ends"), logrando que el hijo herede entre el **95% y 99%** de las aristas de sus padres.
 
 ### 2. Mutación por inversión (Inversion Mutation)
 Sustituimos el *Swap* por la **Mutación por inversión**, un operador mucho más sutil y eficiente para problemas de rutas.
 
 * **Funcionamiento:** Se seleccionan dos puntos de corte aleatorios y se invierte el subsegmento comprendido entre ellos.
+
 * **Ventaja Competitiva:** Mientras que el *Swap* rompe hasta 4 uniones de adyacencia, la **Inversión solo rompe 2**. Esto permite explorar nuevas rutas sin destruir masivamente la estructura de la solución que el crossover ha tardado generaciones en construir.
 
 ---
@@ -82,12 +84,19 @@ Consideramos que esta combinación superará significativamente al algoritmo ori
 3.  **Evasión de Óptimos Locales:** Al utilizar la **Tabla de Bordes**, el algoritmo tiene una "hoja de ruta" mucho más clara de qué conexiones son prometedoras, lo que reduce drásticamente la dependencia del azar y evita que el sistema se estanque en las soluciones subóptimas vistas anteriormente.
 
 ### 📈 Análisis de Convergencia
-*(Imagen de convergencia)*
+![Análisis de Convergencia Algoritmo Propuesto](results/proposed_algorithm_tsp_convergence.png)
 
 **Observaciones clave:**
-1.  **Relación Población/Generaciones:** 
-2.  **Impacto de la Mutación:**
 
+1.  **Eficiencia Determinista:** A diferencia del caos del algoritmo original, la gráfica del modelo propuesto muestra una **convergencia agrupada y predecible**. El algoritmo ya no "choca" contra el límite de 2000 generaciones, de hecho, alcanza el objetivo de fitness en un rango de **125 a 330 generaciones**. Esto supone una mejora de rendimiento de entre el **600% y el 1000%** respecto al método base.
+
+2.  **El Triunfo de la Herencia de Adyacencia (ERX):**
+      * **Interpretación:** La clave del éxito radica en que el **ERX** no baraja posiciones, sino que construye la ruta basándose en conexiones físicas reales. Al heredar rutas eficientes en lugar de índices en una lista, el algoritmo mantiene la estructura geográfica de la misma, evitando los saltos aleatorios que arruinaban el fitness en el modelo OX1.
+
+3.  **Independencia de la Masa Crítica y el Ruido:**
+      * **Estabilidad en la Mutación:** Aquí, las tasas bajas de mutación (**0.2 Rojo** y **0.4 Azul**) vuelven a ser competitivas e incluso superiores en escenarios de población alta. Ya no dependemos de un 60% de mutación para "escapar" de errores, porque la **mutación por inversión** actúa como un optimizador que desenreda la ruta de forma natural.
+
+      * **Escalabilidad:** Incluso con una población mínima de **100 individuos**, el algoritmo propuesto es capaz de encontrar la solución en menos de 350 generaciones, algo que el algoritmo original no lograba ni con 1000 individuos y 2000 intentos. Esto demuestra que la "inteligencia" del operador de cruce es más potente que la fuerza bruta del tamaño poblacional.
 
 ---
 
