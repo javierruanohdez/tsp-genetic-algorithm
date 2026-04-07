@@ -87,9 +87,7 @@ Consideramos que esta combinación superará significativamente al algoritmo ori
 
 ### 🎥 Visualización del Funcionamiento
 
-A continuación se muestra la evolución del algoritmo propuesto (**ERX + Inversión**) sobre el dataset de 48 ciudades. Se observa cómo el sistema "desenreda" la ruta de forma eficiente, eliminando cruces innecesarios en pocas generaciones.
-
-#### ⚙️ Configuración del Experimento
+#### ⚙️ Configuración de la Visualización
 <div align="center">
 
 | Parámetro | Valor |
@@ -100,13 +98,14 @@ A continuación se muestra la evolución del algoritmo propuesto (**ERX + Invers
 | **Condición de Parada** | `≤ 35,000` |
 
 </div>
-
+A continuación se muestra la evolución del algoritmo propuesto (**ERX + Inversión**) sobre el dataset de 48 ciudades. Se observa cómo el sistema "desenreda" la ruta de forma eficiente, eliminando cruces innecesarios en pocas generaciones.
 <div align="center">
-
-  <video src="results/proposed_algorithm_tsp_evolution.mp4" width="100%" controls autoplay muted loop>
-  </video>
-  
+  <img src="results/proposed_algorithm_tsp_evolution.gif" width="100%">
 </div>
+
+ > *Si prefieres visualizarlo en alta definición, puedes reproducir el archivo de video original aquí: [Descargar Video MP4](https://github.com/pablo-fernandez-lopez/IACD_2025_26_EP2_javier_ruano_hernandez/raw/refs/heads/main/results/proposed_algorithm_tsp_evolution.mp4)*
+
+---
 
 ### 📈 Análisis de Convergencia
 ![Análisis de Convergencia Algoritmo Propuesto](results/proposed_algorithm_tsp_convergence.png)
