@@ -83,6 +83,29 @@ Consideramos que esta combinación superará significativamente al algoritmo ori
 2.  **Reducción del Ruido Estocástico:** La inestabilidad observada en el análisis anterior se debía a que la mutación *Swap* era demasiado destructiva. La **Inversión** actúa como una "búsqueda local" más inteligente, permitiendo optimizar tramos de la ruta sin desordenar el resto.
 3.  **Evasión de Óptimos Locales:** Al utilizar la **Tabla de Bordes**, el algoritmo tiene una "hoja de ruta" mucho más clara de qué conexiones son prometedoras, lo que reduce drásticamente la dependencia del azar y evita que el sistema se estanque en las soluciones subóptimas vistas anteriormente.
 
+---
+
+### 🎥 Visualización del Funcionamiento
+
+A continuación se muestra la evolución del algoritmo propuesto (**ERX + Inversión**) sobre el dataset de 48 ciudades. Se observa cómo el sistema "desenreda" la ruta de forma eficiente, eliminando cruces innecesarios en pocas generaciones.
+
+#### ⚙️ Configuración del Experimento
+<div align="center">
+
+| Parámetro | Valor |
+| :--- | :--- |
+| **Población Inicial** | `100` individuos |
+| **Tasa de Mutación** | `0.2` (20%) |
+| **Límite de Generaciones** | `2000` |
+| **Condición de Parada** | `≤ 35,000` |
+
+</div>
+
+<div align="center">
+  <video src="results/proposed_algorithm_tsp_evolution.mp4" width="100%" controls autoplay muted loop>
+  </video>
+</div>
+
 ### 📈 Análisis de Convergencia
 ![Análisis de Convergencia Algoritmo Propuesto](results/proposed_algorithm_tsp_convergence.png)
 
