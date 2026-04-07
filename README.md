@@ -94,16 +94,18 @@ A continuación se muestra la evolución del algoritmo propuesto (**ERX + Invers
 
 | Parámetro | Valor |
 | :--- | :--- |
-| **Población Inicial** | `100` individuos |
-| **Tasa de Mutación** | `0.2` (20%) |
+| **Población Inicial** | `100 individuos` |
+| **Tasa de Mutación** | `0.2` |
 | **Límite de Generaciones** | `2000` |
 | **Condición de Parada** | `≤ 35,000` |
 
 </div>
 
 <div align="center">
+
   <video src="results/proposed_algorithm_tsp_evolution.mp4" width="100%" controls autoplay muted loop>
   </video>
+  
 </div>
 
 ### 📈 Análisis de Convergencia
