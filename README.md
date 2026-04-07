@@ -24,7 +24,7 @@ La ejecución se ha estructurado en bloques funcionales dentro de un entorno **J
 | Parámetro | Descripción |
 | :--- | :--- |
 | `population_size` | Número de individuos (rutas) en cada generación. |
-| `generations` | Límite máximo de iteraciones del proceso evolutivo. |
+| `num_generations` | Límite máximo de iteraciones del proceso evolutivo. |
 | `mutation_rate` | Probabilidad de alteración genética para mantener la diversidad. |
 | **Criterio de Parada** | Distancia total $\le 35.000,00$ o límite de generaciones. |
 
@@ -37,6 +37,27 @@ El algoritmo original consta de una función cruce (crossover) y una función mu
 * **Crossover de Orden 1 (OX1):** Funciona como un "copia y pega". Elegimos al azar un segmento de la ruta del primer padre (parent1), lo copiamos en el hijo, y el resto lo rellenamos con el genoma del segundo padre (parent2) siguiendo su orden. En este caso, se sigue una **lógica toroidal**, es decir, tratamos el genoma como un anillo infinito, puesto que al fin y al cabo representa una ruta (esto nos ayuda a que no se pierda la secuencia de las ciudades).
 
 * **Mutación Swap:** Conocida también como mutación por intercambio, y por ser una de las formas más simples de recombinación en el ámbito de la computación evolutiva. Pero, ¿cómo funciona? Elegimos dos alelos al azar del genoma del hijo, o lo que es lo mismo, dos ciudades al azar de la ruta, y las intercambiamos. 
+
+### 🎥 Visualización del Funcionamiento
+
+#### ⚙️ Configuración de la Visualización
+<div align="center">
+
+| Parámetro | Valor |
+| :--- | :--- |
+| **Población Inicial** | `100 individuos` |
+| **Tasa de Mutación** | `0.2` |
+| **Límite de Generaciones** | `2000` |
+| **Condición de Parada** | `≤ 35,000` |
+
+</div>
+A continuación se muestra la evolución del algoritmo original (OX1 + Swap) sobre el dataset de 48 ciudades. Se observa la dificultad del algoritmo para optimizar la ruta. El sistema mantiene numerosos cruces innecesarios y muestra un comportamiento errático, alcanzando 2000 generaciones sin descubrir una ruta que consideremos óptima.
+<div align="center">
+  <img src="results/original_algorithm_tsp_evolution.gif" width="100%">
+</div>
+
+ > *Si prefieres visualizarlo en alta definición, puedes descargar el archivo de video original aquí: [Descargar Video MP4](https://github.com/pablo-fernandez-lopez/IACD_2025_26_EP2_javier_ruano_hernandez/raw/refs/heads/main/results/original_algorithm_tsp_evolution.mp4)*
+
 
 ### 📈 Análisis de Convergencia
 ![Análisis de Convergencia Algoritmo Original](results/original_algorithm_tsp_convergence.png)
@@ -98,12 +119,12 @@ Consideramos que esta combinación superará significativamente al algoritmo ori
 | **Condición de Parada** | `≤ 35,000` |
 
 </div>
-A continuación se muestra la evolución del algoritmo propuesto (**ERX + Inversión**) sobre el dataset de 48 ciudades. Se observa cómo el sistema "desenreda" la ruta de forma eficiente, eliminando cruces innecesarios en pocas generaciones.
+A continuación se muestra la evolución del algoritmo propuesto (ERX + Inversión) sobre el dataset de 48 ciudades. Se observa cómo el sistema "desenreda" la ruta de forma eficiente, eliminando cruces innecesarios en pocas generaciones.
 <div align="center">
   <img src="results/proposed_algorithm_tsp_evolution.gif" width="100%">
 </div>
 
- > *Si prefieres visualizarlo en alta definición, puedes reproducir el archivo de video original aquí: [Descargar Video MP4](https://github.com/pablo-fernandez-lopez/IACD_2025_26_EP2_javier_ruano_hernandez/raw/refs/heads/main/results/proposed_algorithm_tsp_evolution.mp4)*
+ > *Si prefieres visualizarlo en alta definición, puedes descargar el archivo de video original aquí: [Descargar Video MP4](https://github.com/pablo-fernandez-lopez/IACD_2025_26_EP2_javier_ruano_hernandez/raw/refs/heads/main/results/proposed_algorithm_tsp_evolution.mp4)*
 
 ---
 
