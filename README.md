@@ -192,6 +192,7 @@ pip install -r requirements.txt
 
 # Ejecutar el estudio
 jupyter notebook TSP.ipynb
+jupyter notebook TSP_monitor.ipynb
 ```
 ---
 
