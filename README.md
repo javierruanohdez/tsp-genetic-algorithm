@@ -2,11 +2,11 @@
 ![Python](https://img.shields.io/badge/python-3670A0?style=for-the-badge&logo=python&logoColor=ffdd54)
 ![Jupyter Notebook](https://img.shields.io/badge/jupyter-%23FA0F00.svg?style=for-the-badge&logo=jupyter&logoColor=white)
 ![NumPy](https://img.shields.io/badge/numpy-%23013243.svg?style=for-the-badge&logo=numpy&logoColor=white)
-![Pandas](https://img.shields.io/badge/pandas-%23150458.svg?style=for-the-badge&logo=pandas&logoColor=white)
 ![Matplotlib](https://img.shields.io/badge/matplotlib-6A5ACD?style=for-the-badge)
 
 > **Asignatura:** Inteligencia Artificial para la Ciencia de Datos        
-> **Autor:** [Javier Ruano Hernández](https://github.com/javierruanohdez)
+> **Autor:** [Javier Ruano Hernández](https://github.com/javierruanohdez)  
+> **Resumen Ejecutivo:** [📄 Reporte en PDF](TSP_resolution_using_genetic_algorithms.pdf)
 
 ---
 
@@ -199,7 +199,7 @@ jupyter notebook TSP_monitor.ipynb
 ### 🌐 Recursos Bibliográficos
 
 Para el desarrollo de este proyecto y la implementación de los operadores genéticos avanzados, tanto de crossover como de mutación, se han consultado las siguientes fuentes académicas y técnicas:
-  * **Apuntes de clase:** *Tema VI: Computación Inteligente y Algoritmos Genéticos.* Material docente de la asignatura **Inteligencia Artificial para la Ciencia de Datos** (Prof. Carmen Paz).
+  * **Apuntes de clase:** *Tema VI Computación Inteligente y Algoritmos Genéticos.* Material docente de la asignatura **Inteligencia Artificial para la Ciencia de Datos** (Prof. Carmen Paz).
 
   * **[Edge Recombination Crossover (ERX)](https://k78ma.github.io/quartz/4B/ECE-457A/Edge-Recombination-Crossover):** Recurso utilizado para la aproximación en pseudocódigo y lógica de adyacencia del algoritmo de mejora propuesto.
 
