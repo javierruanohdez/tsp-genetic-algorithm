@@ -1,0 +1,108 @@
+\documentclass[11pt,a4paper]{article}
+
+\usepackage[utf8]{inputenc}
+\usepackage[spanish,es-tabla]{babel}
+\usepackage[T1]{fontenc}
+\usepackage{amsmath, amssymb}
+\usepackage{graphicx}
+\usepackage{booktabs} 
+\usepackage{xcolor}
+\usepackage{hyperref}
+\usepackage{listings}
+\usepackage{parskip} 
+\usepackage{setspace}
+\usepackage{svg}
+\setstretch{1.15}  
+\usepackage[a4paper,top=2cm,bottom=2cm,left=3cm,right=3cm]{geometry}
+
+\hypersetup{colorlinks=true,linkcolor=blue,filecolor=magenta,urlcolor=cyan}
+
+\lstset{basicstyle=\ttfamily\small,breaklines=true,frame=single,backgroundcolor=\color{gray!10}}
+
+
+\title{
+    \vspace{-2cm}
+    \large \textbf{Inteligencia Artificial para la Ciencia de Datos} \\
+    \vspace{0.5cm}
+    \Huge Resolución del Problema del Viajante de Comercio (TSP) mediante Computación Evolutiva \\
+    \vspace{1cm}
+    \includegraphics[width=1.0\textwidth, height=15cm, keepaspectratio]{assets/TSP_report_cover_image.png} \\
+    \vspace{0.5cm}
+}
+\author{Javier Ruano Hernández}
+\date{\today}
+
+\begin{document}
+
+\maketitle
+
+\begin{abstract}
+\noindent
+Este estudio aborda el Problema del Viajante de Comercio (TSP) utilizando técnicas de Algoritmos Genéticos (GA). Se realiza un análisis comparativo entre un enfoque base (Crossover OX1 y Mutación Swap) y una propuesta de mejora orientada a la preservación de adyacencia (Edge Recombination Crossover e Inversión). Los resultados demuestran que la transición de una lógica de orden a una de bordes mejora la eficiencia de convergencia hasta en un 1000\% sobre el dataset de 48 ciudades.
+\end{abstract}
+
+\newpage
+
+\section{Introducción}
+El Problema del Viajante de Comercio (TSP) es un desafío clásico de optimización combinatoria clasificado como NP-duro. El presente proyecto implementa un entorno de Computación Evolutiva en Python para minimizar la distancia recorrida en una ruta de 48 ciudades, simulando procesos de selección natural: cruce, mutación y supervivencia de los más aptos.
+
+\subsection{Objetivo del Estudio}
+El objetivo principal es alcanzar una solución óptima definida por una distancia total recorrida $D \le$ 35.000,00 unidades, analizando la sensibilidad del algoritmo ante variaciones en la masa crítica de la población y la tasa de mutación.
+
+\section{Configuración Experimental}
+El experimento se ha desarrollado en un entorno de \textit{Jupyter Notebook} utilizando librerías estándar de \texttt{Python} (\texttt{NumPy}, \texttt{Random}, \texttt{Matplotlib}). Los hiperparámetros fundamentales se detallan en la Tabla \ref{tab:hiperparametros}.
+
+\begin{table}[h!]
+\centering
+\caption{Parámetros de la Configuración Experimental}
+\label{tab:hiperparametros}
+\begin{tabular}{@{}ll@{}}
+\toprule
+\textbf{Parámetro} & \textbf{Descripción} \\ \midrule
+\texttt{population\_size} & Número de individuos (rutas) en cada generación. \\
+\texttt{num\_generations} & Límite máximo de iteraciones (fijado en 2000). \\
+\texttt{mutation\_rate} & Probabilidad de alteración genética para diversidad. \\
+\textbf{Criterio de Parada} & Distancia $\le$ 35.000,00 o agotamiento de iteraciones. \\ \bottomrule
+\end{tabular}
+\end{table}
+
+\section{Estudio Paramétrico: Algoritmo Original}
+Se analizó la convergencia variando la población en el rango $[100, 1000]$ y la mutación en $[0.2, 0.4, 0.6]$. El modelo base utiliza:
+\begin{itemize}
+    \item \textbf{Crossover de Orden 1 (OX1):} Preservación del orden relativo mediante lógica toroidal.
+    \item \textbf{Mutación Swap:} Intercambio aleatorio de dos alelos (ciudades).
+\end{itemize}
+
+\subsection{Observaciones de Convergencia}
+El análisis estadístico revela una naturaleza altamente estocástica. Se identificó que las tasas de mutación bajas ($0.2$) tienden a estancarse en óptimos locales debido a un carácter excesivamente conservador. Curiosamente, la tasa de $0.6$ mostró mayor éxito al introducir el caos necesario para explorar nuevas regiones del espacio de búsqueda, compensando la ineficiencia del operador \textit{Swap} en rutas extensas.
+
+\includesvg[width=1.0\textwidth]{results/original_algorithm_tsp_convergence.svg} \\
+
+\section{Propuesta de Mejora: Enfoque de Adyacencia}
+Tras detectar la inestabilidad del modelo OX1, se propone un cambio de paradigma hacia la preservación de \textit{bordes} (aristas).
+
+\subsection{Edge Recombination Crossover (ERX)}
+El operador ERX construye una \textit{Tabla de Bordes} para priorizar la herencia de conexiones directas. La selección inteligente del siguiente nodo se basa en el principio de menor número de bordes restantes, lo que garantiza que el descendiente herede entre el 95\% y el 99\% de las aristas parentales.
+
+\subsection{Mutación por Inversión}
+A diferencia del \textit{Swap}, que rompe hasta 4 uniones, la inversión solo altera 2, actuando como un optimizador de búsqueda local que desenreda tramos de la ruta sin destruir la estructura global.
+
+\section{Resultados y Conclusiones}
+La comparación entre el modelo base y el propuesto (\textit{ERX + Inversion}) arroja las siguientes conclusiones técnicas:
+
+\begin{enumerate}
+    \item \textbf{Eficiencia de Convergencia:} El modelo propuesto alcanza el fitness objetivo entre las generaciones 125 y 330, frente a las 2000 requeridas por el modelo base.
+    \item \textbf{Robustez:} La propuesta demuestra independencia de la masa crítica; incluso con una población de 100 individuos, el algoritmo es capaz de converger, lo que supone un ahorro computacional del 90\%.
+    \item \textbf{Estabilidad:} Las curvas de convergencia del modelo propuesto son predecibles y verticales, indicando una mínima dependencia del azar una vez establecida una herencia de adyacencia de alta calidad.
+\end{enumerate}
+
+\includesvg[width=1.0\textwidth]{results/proposed_vs_original_algorithm_tsp_convergence.svg} \\
+
+\begin{thebibliography}{9}
+\bibitem{apuntes} 
+Apuntes de clase: \textit{Tema VI Computación Inteligente y Algoritmos Genéticos.} Material docente de la asignatura IACD (Prof. Carmen Paz).
+\bibitem{erx_web} 
+\textit{Edge Recombination Crossover (ERX)}. Recurso utilizado para la aproximación en pseudocódigo y lógica de adyacencia del algoritmo de mejora propuesto. Disponible en: \url{https://k78ma.github.io/quartz/4B/ECE-457A/Edge-Recombination-Crossover}
+\end{thebibliography}
+
+\end{document}
