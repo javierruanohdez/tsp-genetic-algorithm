@@ -56,7 +56,7 @@ Below is the evolution of the original algorithm (OX1 + Swap) on the dataset of 
   <img src="results/original_algorithm_tsp_evolution.gif" width="100%">
 </div>
 
-> If you prefer to view it in high definition, you can download the original video file here: [Download MP4 Video](https://github.com/pablo-fernandez-lopez/IACD_2025_26_EP2_javier_ruano_hernandez/raw/refs/heads/main/results/original_algorithm_tsp_evolution.mp4)
+> If you prefer to view it in high definition, you can download the original video file here: [Download MP4 Video](https://github.com/javierruanohdez/tsp-genetic-algorithm/raw/refs/heads/main/results/original_algorithm_tsp_evolution.mp4)
 
 ### Convergence Analysis
 ![Original Algorithm Convergence Analysis](results/original_algorithm_tsp_convergence.png)
@@ -127,7 +127,7 @@ Below is the evolution of the proposed algorithm (ERX + Inversion) on the datase
   <img src="results/proposed_algorithm_tsp_evolution.gif" width="100%">
 </div>
 
-> If you prefer to view it in high definition, you can download the original video file here: [Download MP4 Video](https://github.com/pablo-fernandez-lopez/IACD_2025_26_EP2_javier_ruano_hernandez/raw/refs/heads/main/results/proposed_algorithm_tsp_evolution.mp4)
+> If you prefer to view it in high definition, you can download the original video file here: [Download MP4 Video](https://github.com/javierruanohdez/tsp-genetic-algorithm/raw/refs/heads/main/results/proposed_algorithm_tsp_evolution.mp4)
 
 ---
 
@@ -177,7 +177,7 @@ When observing both panels side by side, the conclusion is immediate: the propos
 
 ```bash
 # Clone the repository
-git clone https://github.com/pablo-fernandez-lopez/IACD_2025_26_EP2_javier_ruano_hernandez.git  tsp_genetic_algorithm
+git clone https://github.com/javierruanohdez/tsp-genetic-algorithm.git  tsp_genetic_algorithm
 cd tsp_genetic_algorithm
 
 # Create a virtual environment (Recommended)
@@ -203,9 +203,8 @@ jupyter notebook TSP_monitor.ipynb
 
 ### Bibliographic Resources
 
-For the development of this project and the implementation of advanced genetic operators, for both crossover and mutation, the following academic and technical sources were consulted:
+For the development of this project and the implementation of advanced genetic operators, the following technical sources were consulted:
 
-* **Class notes:** *Tema VI Computación Inteligente y Algoritmos Genéticos.* Teaching material for the course **Inteligencia Artificial para la Ciencia de Datos** (Prof. Carmen Paz).
 * **[Edge Recombination Crossover (ERX)](https://k78ma.github.io/quartz/4B/ECE-457A/Edge-Recombination-Crossover):** Resource used for the pseudocode approach and adjacency logic of the proposed improvement algorithm.
 
 ---
