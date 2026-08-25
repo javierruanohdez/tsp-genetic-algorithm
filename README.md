@@ -1,206 +1,211 @@
-# 🧬 Resolución del TSP mediante Algoritmos Genéticos
+# 🧬 TSP Resolution using Genetic Algorithms
 ![Python](https://img.shields.io/badge/python-3670A0?style=for-the-badge&logo=python&logoColor=ffdd54)
 ![Jupyter Notebook](https://img.shields.io/badge/jupyter-%23FA0F00.svg?style=for-the-badge&logo=jupyter&logoColor=white)
 ![NumPy](https://img.shields.io/badge/numpy-%23013243.svg?style=for-the-badge&logo=numpy&logoColor=white)
 ![Matplotlib](https://img.shields.io/badge/matplotlib-6A5ACD?style=for-the-badge)
 
-> **Asignatura:** Inteligencia Artificial para la Ciencia de Datos        
-> **Autor:** [Javier Ruano Hernández](https://github.com/javierruanohdez)  
-> **Resumen Ejecutivo:** [📄 Reporte en PDF](TSP_resolution_using_genetic_algorithms.pdf)
+## Introduction
+
+This project addresses the **Traveling Salesperson Problem (TSP)** by applying **Evolutionary Computation** techniques. The goal is to find an efficient route connecting 48 cities, minimizing the total distance traveled through the simulation of genetic algorithms, recreating biological operations such as: selection, crossover, and mutation.
+
+### Objective of the Study
+
+Analyze the parametric behavior of the algorithm against a dataset of 48 cities and their coordinates, aiming to reach an **optimal solution (distance ≤ 35,000.00)**.
 
 ---
 
-## 📋 Introducción
-Este proyecto aborda el **Problema del Viajante de Comercio (TSP)** aplicando técnicas de **Computación Evolutiva**. El objetivo es encontrar una ruta eficiente que conecte 48 ciudades, minimizando la distancia total recorrida mediante la simulación de algoritmos genéticos, recreando operaciones biológicas como: selección, cruce y mutación.
+## Experiment Setup
 
-### 🎯 Objetivo del Estudio
-Analizar el comportamiento paramétrico del algoritmo frente a un dataset de 48 ciudades y sus coordenadas, buscando alcanzar una **solución óptima (distancia ≤ 35.000,00)**.
+The execution has been structured in functional blocks within a **Jupyter Notebook** environment, facilitating direct tuning of the following hyperparameters:
 
----
-
-## 🛠️ Configuración del Experimento
-La ejecución se ha estructurado en bloques funcionales dentro de un entorno **Jupyter Notebook**, facilitando el ajuste directo de los siguientes hiperparámetros:
-
-| Parámetro | Descripción |
-| :--- | :--- |
-| `population_size` | Número de individuos (rutas) en cada generación. |
-| `num_generations` | Límite máximo de iteraciones del proceso evolutivo. |
-| `mutation_rate` | Probabilidad de alteración genética para mantener la diversidad. |
-| **Criterio de Parada** | Distancia total $\le 35.000,00$ o límite de generaciones. |
+| Parameter | Description |
+| --- | --- |
+| `population_size` | Number of individuals (routes) in each generation. |
+| `num_generations` | Maximum iteration limit of the evolutionary process. |
+| `mutation_rate` | Probability of genetic alteration to maintain diversity. |
+| **Stopping Criterion** | Total distance $\le 35,000.00$ or generation limit. |
 
 ---
 
-## 📊 Estudio Paramétrico
-En este apartado analizaremos la convergencia del algoritmo genético original variando el **tamaño de la población** `[100, 250, 500, 750, 1000]` y la **tasa de mutación** `[0.2, 0.4, 0.6]`.
+## Parametric Study
 
-El algoritmo original consta de una función cruce (crossover) y una función mutación que intentaremos mejorar posteriormente, pero veamos primero el funcionamiento de las ya definidas:
-* **Crossover de Orden 1 (OX1):** Funciona como un "copia y pega". Elegimos al azar un segmento de la ruta del primer padre (parent1), lo copiamos en el hijo, y el resto lo rellenamos con el genoma del segundo padre (parent2) siguiendo su orden. En este caso, se sigue una **lógica toroidal**, es decir, tratamos el genoma como un anillo infinito, puesto que al fin y al cabo representa una ruta (esto nos ayuda a que no se pierda la secuencia de las ciudades).
+In this section, we will analyze the convergence of the original genetic algorithm by varying the **population size** `[100, 250, 500, 750, 1000]` and the **mutation rate** `[0.2, 0.4, 0.6]`.
 
-* **Mutación Swap:** Conocida también como mutación por intercambio, y por ser una de las formas más simples de recombinación en el ámbito de la computación evolutiva. Pero, ¿cómo funciona? Elegimos dos alelos al azar del genoma del hijo, o lo que es lo mismo, dos ciudades al azar de la ruta, y las intercambiamos. 
+The original algorithm consists of a crossover function and a mutation function that we will try to improve later, but let's first look at how the ones already defined work:
 
-### 🎥 Visualización del Funcionamiento
+* **Order 1 Crossover (OX1):** Works as a "copy and paste". We randomly choose a segment of the route from the first parent (parent1), copy it into the offspring, and fill the rest with the genome of the second parent (parent2) following its order. In this case, a **toroidal logic** is followed, meaning we treat the genome as an infinite ring, since after all it represents a route (this helps prevent losing the sequence of the cities).
+* **Swap Mutation:** Also known as exchange mutation, and for being one of the simplest forms of recombination in the field of evolutionary computation. But how does it work? We choose two random alleles from the offspring's genome, or what is the same, two random cities from the route, and swap them.
 
-#### ⚙️ Configuración de la Visualización
+### Operation Visualization
+
+#### Visualization Configuration
 <div align="center">
 
-| Parámetro | Valor |
-| :--- | :--- |
-| **Población Inicial** | `100 individuos` |
-| **Tasa de Mutación** | `0.2` |
-| **Límite de Generaciones** | `2000` |
-| **Condición de Parada** | `≤ 35,000` |
+| Parameter | Value |
+| --- | --- |
+| **Initial Population** | `100 individuals` |
+| **Mutation Rate** | `0.2` |
+| **Generation Limit** | `2000` |
+| **Stopping Condition** | `≤ 35,000` |
 
 </div>
-A continuación se muestra la evolución del algoritmo original (OX1 + Swap) sobre el dataset de 48 ciudades. Se observa la dificultad del algoritmo para optimizar la ruta. El sistema mantiene numerosos cruces innecesarios y muestra un comportamiento errático, alcanzando 2000 generaciones sin descubrir una ruta que consideremos óptima.
+
+Below is the evolution of the original algorithm (OX1 + Swap) on the dataset of 48 cities. The difficulty of the algorithm to optimize the route is observed. The system maintains numerous unnecessary intersections and displays erratic behavior, reaching 2000 generations without discovering a route that we consider optimal.
+
 <div align="center">
   <img src="results/original_algorithm_tsp_evolution.gif" width="100%">
 </div>
 
- > *Si prefieres visualizarlo en alta definición, puedes descargar el archivo de video original aquí: [Descargar Video MP4](https://github.com/pablo-fernandez-lopez/IACD_2025_26_EP2_javier_ruano_hernandez/raw/refs/heads/main/results/original_algorithm_tsp_evolution.mp4)*
+> If you prefer to view it in high definition, you can download the original video file here: [Download MP4 Video](https://github.com/pablo-fernandez-lopez/IACD_2025_26_EP2_javier_ruano_hernandez/raw/refs/heads/main/results/original_algorithm_tsp_evolution.mp4)
+
+### Convergence Analysis
+![Original Algorithm Convergence Analysis](results/original_algorithm_tsp_convergence.png)
+
+**Key observations:**
+
+1. **Stochastic Nature:** The graph reveals a **non-linear** and **highly volatile** behavior, where the original algorithm (OX1 + Swap) shows a critical dependence on chance. A smooth progression is not observed, but rather abrupt crossovers between different mutation rates. This suggests that the algorithm easily falls into **local optima**, from which it does not always manage to escape before the generation limit (2000).
+
+2. **The "Beneficial Chaos" of High Mutation:** Surprisingly, **Rate 0.6 (Purple)** is the one that manages to converge in the most scenarios (3 out of 5).
+* **Interpretation:** In such a broad search space (48 cities), a low mutation (0.2) can make the algorithm overly "conservative," remaining trapped in suboptimal routes. Conversely, a 60% mutation introduces enough noise to escape those terrible solutions, even if the process is erratic. It is essentially a random search that compensates for the shortcomings of the OX1 operator.
 
 
-### 📈 Análisis de Convergencia
-![Análisis de Convergencia Algoritmo Original](results/original_algorithm_tsp_convergence.png)
-
-**Observaciones clave:**
-
-1. **Naturaleza Estocástica:** La gráfica revela un comportamiento **no lineal** y **altamente volátil**, donde el algoritmo original (OX1 + Swap) muestra una dependencia crítica del azar. No se observa una progresión suave, sino más bien cruces abruptos entre las diferentes tasas de mutación. Lo que sugiere que el algoritmo cae fácilmente en **óptimos locales**, de los cuales no siempre logra salir antes del límite de generaciones (2000).
-
-2. **El "Caos Beneficioso" de la Mutación Alta:**
-   Sorprendentemente, la **Tasa 0.6 (Púrpura)** es la que logra converger en más escenarios (3 de 5). 
-   * **Interpretación:** En un espacio de búsqueda tan amplio (48 ciudades), una mutación baja (0.2) puede hacer que el algoritmo sea demasiado "conservador", quedando atrapado en rutas poco óptimas. En cambio, una mutación del 60% introduce suficiente ruido para escapar de esas pésimas soluciones, aunque el proceso sea errático. Es en esencia, una búsqueda aleatoria que compensa las carencias del operador OX1.
-
-3. **Sensibilidad al Tamaño de Población:**
-   * **El muro de las 2000 generaciones:** El hecho de que varias configuraciones (incluyendo poblaciones grandes) choquen contra este límite confirma que la recombinación por intercambio aleatorio (Swap) es insuficiente para optimizar rutas de 48 ciudades, a diferencia de cuando eran sólo 5 de ellas. Un buen símil sería que, intercambiar solo dos ciudades es como intentar resolver un cubo de Rubik moviendo las piezas al azar: funciona por pura probabilidad.
----
-
-## 🚀 Propuesta de Mejora
-
-Tras analizar la inestabilidad del algoritmo original, proponemos una transición de un enfoque basado en la **ordenación** a uno basado en la **adyacencia**. En el TSP, la calidad de una ruta no depende de si una ciudad es la tercera o la cuarta en dicha ruta, sino que lo que verdaderamente importa es quiénes son sus vecinos (o bordes).
-
-### 1. Crossover de borde (Edge Recombination Crossover)
-El operador **ERX** se centra exclusivamente en preservar las uniones (aristas) presentes en los padres, siendo el estándar para problemas donde la adyacencia es crítica.
-
-* **Mecánica del Algoritmo:**
-    1.  **Tabla de Bordes (Edge Table):** Se construye una lista de adyacencia $N(v)$ para cada ciudad $v$, recopilando todos los vecinos que tiene en ambos padres.
-
-    2.  **Selección Inteligente:** Se elige una ciudad inicial. Para las siguientes, el algoritmo no elige al azar, sino que busca en $N(c)$ la ciudad $u$ con el **menor número de bordes restantes** ($|N(u)|$ mínimo).
-
-    3.  **Gestión de Restricciones:** Al priorizar nodos con menos opciones (nodos más restringidos), el ERX minimiza la necesidad de introducir bordes aleatorios ("dead-ends"), logrando que el hijo herede entre el **95% y 99%** de las aristas de sus padres.
-
-### 2. Mutación por inversión (Inversion Mutation)
-Sustituimos el *Swap* por la **Mutación por inversión**, un operador mucho más sutil y eficiente para problemas de rutas.
-
-* **Funcionamiento:** Se seleccionan dos puntos de corte aleatorios y se invierte el subsegmento comprendido entre ellos.
-
-* **Ventaja Competitiva:** Mientras que el *Swap* rompe hasta 4 uniones de adyacencia, la **Inversión solo rompe 2**. Esto permite explorar nuevas rutas sin destruir masivamente la estructura de la solución que el crossover ha tardado generaciones en construir.
+3. **Sensitivity to Population Size:**
+* **The wall of 2000 generations:** The fact that several configurations (including large populations) collide against this limit confirms that random exchange recombination (Swap) is insufficient to optimize routes of 48 cities, unlike when there were only 5 of them. A good simile would be that swapping only two cities is like trying to solve a Rubik's Cube by moving pieces at random: it works by pure probability.
 
 ---
 
-### ⚖️ Justificación de la Mejora
-Consideramos que esta combinación superará significativamente al algoritmo original por tres razones fundamentales:
+## Improvement Proposal
 
-1.  **Preservación de la Herencia:** El algoritmo original (OX1) es excelente para preservar el orden relativo, pero el TSP es un problema de **distancias entre nodos adyacentes**. ERX está diseñado matemáticamente para no perder esas conexiones valiosas.
-2.  **Reducción del Ruido Estocástico:** La inestabilidad observada en el análisis anterior se debía a que la mutación *Swap* era demasiado destructiva. La **Inversión** actúa como una "búsqueda local" más inteligente, permitiendo optimizar tramos de la ruta sin desordenar el resto.
-3.  **Evasión de Óptimos Locales:** Al utilizar la **Tabla de Bordes**, el algoritmo tiene una "hoja de ruta" mucho más clara de qué conexiones son prometedoras, lo que reduce drásticamente la dependencia del azar y evita que el sistema se estanque en las soluciones subóptimas vistas anteriormente.
+After analyzing the instability of the original algorithm, we propose a transition from an approach based on **ordering** to one based on **adjacency**. In the TSP, the quality of a route does not depend on whether a city is third or fourth in said route, but what truly matters is who its neighbors (or edges) are.
+
+### 1. Edge Recombination Crossover
+
+The **ERX** operator focuses exclusively on preserving the connections (edges) present in the parents, being the standard for problems where adjacency is critical.
+
+* **Algorithm Mechanics:**
+1. **Edge Table:** An adjacency list $N(v)$ is built for each city $v$, gathering all the neighbors it has in both parents.
+2. **Smart Selection:** An initial city is chosen. For the subsequent ones, the algorithm does not pick at random, but searches in $N(c)$ for the city $u$ with the **fewest remaining edges** (minimum $\vert{}N(u)\vert{}$).
+3. **Constraint Management:** By prioritizing nodes with fewer options (more constrained nodes), ERX minimizes the need to introduce random edges ("dead-ends"), allowing the offspring to inherit between **95% and 99%** of its parents' edges.
+
+
+### 2. Inversion Mutation
+
+We replace *Swap* with **Inversion Mutation**, a much more subtle and efficient operator for routing problems.
+
+* **How it works:** Two random cut points are selected and the subsegment between them is inverted.
+* **Competitive Advantage:** While *Swap* breaks up to 4 adjacency connections, **Inversion only breaks 2**. This allows exploring new routes without massively destroying the solution structure that the crossover took generations to build.
 
 ---
 
-### 🎥 Visualización del Funcionamiento
+### Justification for the Improvement
 
-#### ⚙️ Configuración de la Visualización
+We believe that this combination will significantly outperform the original algorithm for three fundamental reasons:
+
+1. **Preservation of Inheritance:** The original algorithm (OX1) is excellent for preserving relative order, but the TSP is a problem of **distances between adjacent nodes**. ERX is mathematically designed not to lose those valuable connections.
+2. **Reduction of Stochastic Noise:** The instability observed in the previous analysis was due to the *Swap* mutation being overly destructive. **Inversion** acts as a smarter "local search", allowing the optimization of route segments without disrupting the rest.
+3. **Evasion of Local Optima:** By using the **Edge Table**, the algorithm has a much clearer "roadmap" of which connections are promising, drastically reducing dependence on chance and preventing the system from getting stuck in the suboptimal solutions seen previously.
+
+---
+
+### Operation Visualization
+
+#### Visualization Configuration
 <div align="center">
 
-| Parámetro | Valor |
-| :--- | :--- |
-| **Población Inicial** | `100 individuos` |
-| **Tasa de Mutación** | `0.2` |
-| **Límite de Generaciones** | `2000` |
-| **Condición de Parada** | `≤ 35,000` |
+| Parameter | Value |
+| --- | --- |
+| **Initial Population** | `100 individuals` |
+| **Mutation Rate** | `0.2` |
+| **Generation Limit** | `2000` |
+| **Stopping Condition** | `≤ 35,000` |
 
 </div>
-A continuación se muestra la evolución del algoritmo propuesto (ERX + Inversión) sobre el dataset de 48 ciudades. Se observa cómo el sistema "desenreda" la ruta de forma eficiente, eliminando cruces innecesarios en pocas generaciones.
+
+
+Below is the evolution of the proposed algorithm (ERX + Inversion) on the dataset of 48 cities. It shows how the system efficiently "untangles" the route, eliminating unnecessary intersections in a few generations.
 <div align="center">
   <img src="results/proposed_algorithm_tsp_evolution.gif" width="100%">
 </div>
 
- > *Si prefieres visualizarlo en alta definición, puedes descargar el archivo de video original aquí: [Descargar Video MP4](https://github.com/pablo-fernandez-lopez/IACD_2025_26_EP2_javier_ruano_hernandez/raw/refs/heads/main/results/proposed_algorithm_tsp_evolution.mp4)*
+> If you prefer to view it in high definition, you can download the original video file here: [Download MP4 Video](https://github.com/pablo-fernandez-lopez/IACD_2025_26_EP2_javier_ruano_hernandez/raw/refs/heads/main/results/proposed_algorithm_tsp_evolution.mp4)
 
 ---
 
-### 📈 Análisis de Convergencia
-![Análisis de Convergencia Algoritmo Propuesto](results/proposed_algorithm_tsp_convergence.png)
+### Convergence Analysis
+![Proposed Algorithm Convergence Analysis](results/proposed_algorithm_tsp_convergence.png)
 
-**Observaciones clave:**
+**Key observations:**
 
-1.  **Eficiencia Determinista:** A diferencia del caos del algoritmo original, la gráfica del modelo propuesto muestra una **convergencia agrupada y predecible**. El algoritmo ya no "choca" contra el límite de 2000 generaciones, de hecho, alcanza el objetivo de fitness en un rango de **125 a 330 generaciones**. Esto supone una mejora de rendimiento de entre el **600% y el 1000%** respecto al método base.
+1. **Deterministic Efficiency:** Unlike the chaos of the original algorithm, the graph of the proposed model shows a **clustered and predictable convergence**. The algorithm no longer "hits" the 2000 generation limit; in fact, it reaches the fitness goal within a range of **125 to 330 generations**. This represents a performance improvement between **600% and 1000%** compared to the baseline method.
+2. **The Triumph of Adjacency Inheritance (ERX):**
+* **Interpretation:** The key to success lies in the fact that **ERX** does not shuffle positions, but rather builds the route based on real physical connections. By inheriting efficient routes instead of indices in a list, the algorithm maintains its geographic structure, avoiding the random jumps that ruined fitness in the OX1 model.
 
-2.  **El Triunfo de la Herencia de Adyacencia (ERX):**
-      * **Interpretación:** La clave del éxito radica en que el **ERX** no baraja posiciones, sino que construye la ruta basándose en conexiones físicas reales. Al heredar rutas eficientes en lugar de índices en una lista, el algoritmo mantiene la estructura geográfica de la misma, evitando los saltos aleatorios que arruinaban el fitness en el modelo OX1.
 
-3.  **Independencia de la Masa Crítica y el Ruido:**
-      * **Estabilidad en la Mutación:** Aquí, las tasas bajas de mutación (**0.2 Rojo** y **0.4 Azul**) vuelven a ser competitivas e incluso superiores en escenarios de población alta. Ya no dependemos de un 60% de mutación para "escapar" de errores, porque la **mutación por inversión** actúa como un optimizador que desenreda la ruta de forma natural.
-
-      * **Escalabilidad:** Incluso con una población mínima de **100 individuos**, el algoritmo propuesto es capaz de encontrar la solución en menos de 350 generaciones, algo que el algoritmo original no lograba ni con 1000 individuos y 2000 intentos. Esto demuestra que la "inteligencia" del operador de cruce es más potente que la fuerza bruta del tamaño poblacional.
-
----
-
-## 🧪 Conclusiones
-![Análisis de Convergencia Algoritmo Original vs. Algoritmo Propuesto](results/proposed_vs_original_algorithm_tsp_convergence.png)
-
-Al observar los dos paneles en paralelo, la conclusión es inmediata: el algoritmo propuesto (ERX + Inversion) es una gran mejora frente al original (OX1 + Swap).
-
-### 1. Desplazamiento del Área de Convergencia
-  * **Panel Izquierdo (Base):** El grueso de los resultados se aglutina en el extremo derecho (generaciones 800 a 2000). Es un algoritmo que sobrevive al límite de tiempo, pero no domina el problema.
-
-  * **Panel Derecho (Propuesta):** El área de éxito se ha desplazado drásticamente hacia la izquierda (generaciones 125 a 330). Lo que antes era un caso de éxito excepcional para el algoritmo original, es ahora el estándar mínimo de nuestra propuesta.
-
-### 2. Estabilidad de la Solución
-  * **Caos:** En el gráfico original, las líneas zigzaguean sin control. Esto indica que el éxito es **sensible al azar**. El mismo tamaño de población puede tardar 400 o 2000 generaciones dependiendo de la suerte.
-
-  * **Robustez:** En la propuesta, las líneas son mucho más verticales y predecibles. Esto demuestra que el algoritmo es **robusto**, es decir, el rendimiento es consistente independientemente de las fluctuaciones en la tasa de mutación, lo que indica una herencia genética de mayor calidad.
-
-### 3. Ratio de Eficiencia
-  * **Factor de Aceleración:** La propuesta alcanza el mismo objetivo de fitness hasta **10 veces más rápido** en los mejores casos.
-
-  * **Eficiencia de Recursos:** Mientras que el algoritmo base requiere poblaciones masivas (1000+) para intentar converger, el ERX con Inversión es capaz de resolver el problema de forma óptima con poblaciones un **90% más pequeñas** (100 individuos), ahorrando un tiempo de computación crítico.
+3. **Independence from Critical Mass and Noise:**
+* **Stability in Mutation:** Here, low mutation rates (**0.2 Red** and **0.4 Blue**) become competitive again and even superior in high-population scenarios. We no longer depend on a 60% mutation rate to "escape" errors, because **inversion mutation** acts as an optimizer that naturally untangles the route.
+* **Scalability:** Even with a minimal population of **100 individuals**, the proposed algorithm is capable of finding the solution in fewer than 350 generations, something the original algorithm could not achieve even with 1000 individuals and 2000 attempts. This demonstrates that the "intelligence" of the crossover operator is more powerful than the brute force of population size.
 
 ---
 
-> El uso de una **Tabla de Adyacencia (ERX)** para preservar las aristas y una **Mutación por Inversión** para optimizar la geometría ha transformado un proceso estocástico ineficiente en una herramienta de optimización logística.
+## Conclusions
+![Original vs. Proposed](results/proposed_vs_original_algorithm_tsp_convergence.png)
+
+When observing both panels side by side, the conclusion is immediate: the proposed algorithm (ERX + Inversion) is a major improvement over the original (OX1 + Swap).
+
+### 1. Shift in the Convergence Area
+
+* **Left Panel (Baseline):** The bulk of the results gathers on the far right (generations 800 to 2000). It is an algorithm that survives the time limit, but does not master the problem.
+* **Right Panel (Proposal):** The success area has shifted drastically to the left (generations 125 to 330). What used to be an exceptional success case for the original algorithm is now the minimum standard of our proposal.
+
+### 2. Solution Stability
+
+* **Chaos:** In the original graph, the lines zigzag uncontrollably. This indicates that success is **sensitive to chance**. The same population size can take 400 or 2000 generations depending on luck.
+* **Robustness:** In the proposal, the lines are much more vertical and predictable. This demonstrates that the algorithm is **robust**, meaning performance is consistent regardless of fluctuations in the mutation rate, indicating higher quality genetic inheritance.
+
+### 3. Efficiency Ratio
+
+* **Speedup Factor:** The proposal reaches the same fitness goal up to **10 times faster** in the best cases.
+* **Resource Efficiency:** While the baseline algorithm requires massive populations (1000+) to attempt convergence, ERX with Inversion is capable of solving the problem optimally with populations **90% smaller** (100 individuals), saving critical computing time.
 
 ---
 
-### 📦 Instrucciones de Ejecución
+> The use of an **Adjacency Table (ERX)** to preserve edges and an **Inversion Mutation** to optimize geometry has transformed an inefficient stochastic process into a logistics optimization tool.
+
+---
+
+### Execution Instructions
+
 ```bash
-# Clonar el repositorio
+# Clone the repository
 git clone https://github.com/pablo-fernandez-lopez/IACD_2025_26_EP2_javier_ruano_hernandez.git  tsp_genetic_algorithm
 cd tsp_genetic_algorithm
 
-# Crear un entorno virtual (Recomendado)
+# Create a virtual environment (Recommended)
 python -m venv venv
 
-# Activar el entorno
-## En Windows:
-venv\Scripts\activate o .\venv\Scripts\Activate.ps1
+# Activate the environment
+## On Windows:
+venv\Scripts\activate or .\venv\Scripts\Activate.ps1
 
-## En Linux y macOS:
+## On Linux and macOS:
 source venv/bin/activate
 
-# Instalar dependencias
+# Install dependencies
 pip install -r requirements.txt
 
-# Ejecutar el estudio
+# Run the study
 jupyter notebook TSP.ipynb
 jupyter notebook TSP_monitor.ipynb
+
 ```
+
 ---
 
-### 🌐 Recursos Bibliográficos
+### Bibliographic Resources
 
-Para el desarrollo de este proyecto y la implementación de los operadores genéticos avanzados, tanto de crossover como de mutación, se han consultado las siguientes fuentes académicas y técnicas:
-  * **Apuntes de clase:** *Tema VI Computación Inteligente y Algoritmos Genéticos.* Material docente de la asignatura **Inteligencia Artificial para la Ciencia de Datos** (Prof. Carmen Paz).
+For the development of this project and the implementation of advanced genetic operators, for both crossover and mutation, the following academic and technical sources were consulted:
 
-  * **[Edge Recombination Crossover (ERX)](https://k78ma.github.io/quartz/4B/ECE-457A/Edge-Recombination-Crossover):** Recurso utilizado para la aproximación en pseudocódigo y lógica de adyacencia del algoritmo de mejora propuesto.
+* **Class notes:** *Tema VI Computación Inteligente y Algoritmos Genéticos.* Teaching material for the course **Inteligencia Artificial para la Ciencia de Datos** (Prof. Carmen Paz).
+* **[Edge Recombination Crossover (ERX)](https://k78ma.github.io/quartz/4B/ECE-457A/Edge-Recombination-Crossover):** Resource used for the pseudocode approach and adjacency logic of the proposed improvement algorithm.
 
 ---
